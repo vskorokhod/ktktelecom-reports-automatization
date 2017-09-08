@@ -25,9 +25,9 @@ def _report_composition():
     month_str_yesterday = month_str_dict[month_yesterday]
     
     commands = ['"C:\Program Files (x86)\WinSCP\winscp.com" /ini=nul /command "open sftp://ossuser:Changeme_123@10.10.180.65 -hostkey=""ssh-rsa 2048 61:5b:c1:1f:ef:64:75:52:53:11:b1:d5:3f:6b:ae:4b""" "get ""/opt/oss/server/var/fileint/pm/NOC_reports/Daily_report/*.xlsx"" ""C:\Reports\Daily report\\""" "close" "exit"',
-                'mkdir "G:\Share\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}\\"'.format(year, month, day, month_str),
-                'robocopy "G:\Share\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}" "G:\Share\ТД\Мониторинг\Отчёты\Суточный отчет\{4}м{5}\{6} {7} {4}"'.format(year_yesterday, month_yesterday, day_yesterday, month_str_yesterday, year, month, day, month_str),
-                'move "C:\Reports\Daily report\*.xlsx" "G:\Share\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}\\"'.format(year, month, day, month_str)]
+                'mkdir "Z:\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}\\"'.format(year, month, day, month_str),
+                'robocopy "Z:\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}" "Z:\ТД\Мониторинг\Отчёты\Суточный отчет\{4}м{5}\{6} {7} {4}"'.format(year_yesterday, month_yesterday, day_yesterday, month_str_yesterday, year, month, day, month_str),
+                'move "C:\Reports\Daily report\*.xlsx" "Z:\ТД\Мониторинг\Отчёты\Суточный отчет\{0}м{1}\{2} {3} {0}\\"'.format(year, month, day, month_str)]
              
     for command in commands:
         subprocess.run(command, shell=True)
