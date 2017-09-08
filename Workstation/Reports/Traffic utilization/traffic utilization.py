@@ -19,7 +19,7 @@ def _report_composition():
                 'del "C:\Reports\Traffic utilization\*.xlsx"']
      
     subprocess.run(commands[0], shell=True)
-    _transfer_data("C:\Reports\Traffic utilization\Traffic utilization report.xlsx", ["G:\Share\ТД\Мониторинг\Отчёты\Недельный отчёт ТГ Гончаруку - пятница\Report Traffic Trunk Groups ISUP.xlsx", "G:\Share\ТД\Мониторинг\Отчёты\Недельный отчёт ТГ Гончаруку - пятница\Report Traffic Trunk Groups SIP.xlsx"])
+    _transfer_data("C:\Reports\Traffic utilization\Traffic utilization report.xlsx", ["Z:\ТД\Мониторинг\Отчёты\Недельный отчёт ТГ Гончаруку - пятница\Report Traffic Trunk Groups ISUP.xlsx", "Z:\ТД\Мониторинг\Отчёты\Недельный отчёт ТГ Гончаруку - пятница\Report Traffic Trunk Groups SIP.xlsx"])
     subprocess.run(commands[1], shell=True)
 
         

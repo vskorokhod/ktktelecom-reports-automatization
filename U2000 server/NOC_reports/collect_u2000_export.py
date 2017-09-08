@@ -38,8 +38,8 @@ def _remove_old_data(wb, ws):
     week_ago = datetime.strftime(date.today() - timedelta(days=7), '%d.%m.%Y')
     
     for cell in ws['A']:
-        if cell.value == '{0} 20:00:00'.format(week_ago):
-            offset = cell.row
+        if cell.value == '{0} 21:00:00'.format(week_ago):
+            offset = cell.row - 1
             break
             
     for i in range(1, ws.max_row - offset + 1):

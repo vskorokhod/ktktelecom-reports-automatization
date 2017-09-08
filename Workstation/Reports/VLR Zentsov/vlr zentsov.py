@@ -25,7 +25,7 @@ def _report_composition():
                 'del "C:\Reports\VLR Zentsov\*.xlsx"']
      
     subprocess.run(commands[0], shell=True)
-    _transfer_data("C:\Reports\VLR Zentsov\VLR Subscribers.xlsx", "G:\Share\ТД\Мониторинг\Отчёты\Недельный отчёт VLR Зенцову - 9ч. пятница\\")
+    _transfer_data("C:\Reports\VLR Zentsov\VLR Subscribers.xlsx", "Z:\ТД\Мониторинг\Отчёты\Недельный отчёт VLR Зенцову - 9ч. пятница\\")
     subprocess.run(commands[1], shell=True)
 
         
