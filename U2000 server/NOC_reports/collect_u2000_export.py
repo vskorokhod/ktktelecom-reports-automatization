@@ -39,7 +39,9 @@ def _remove_old_data(wb, ws, daily_report=False, kpi_weekly_report=False):
         week_ago = datetime.strftime(date.today() - timedelta(days=7), '%d.%m.%Y')
         sought_str = '{0} 21:00:00'.format(week_ago)
     elif kpi_weekly_report:
-        month_ago = datetime.strftime(date.today() - timedelta(days=31), '%d.%m.%Y')
+        prev_month_length = {'01': 31, '02': 31, '03': 28, '04': 31, '05': 30, '06': 31, '07': 30, '08': 31, '09': 31, '10': 30, '11': 31, '12': 30}
+        delta = prev_month_length[datetime.strftime(date.today(), '%m')]
+        month_ago = datetime.strftime(date.today() - timedelta(days=delta), '%d.%m.%Y')
         sought_str = '{0} 00:00:00'.format(month_ago)
     
     for cell in ws['A']:
