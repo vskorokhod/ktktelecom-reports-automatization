@@ -30,15 +30,20 @@ def _get_sheet_name(file_id):
     return sheet_name
     
     
-def _remove_old_data(wb, ws):
+def _remove_old_data(wb, ws, daily_report=False, kpi_weekly_report=False):
     if ws.title in ['HSS SPS MSS USN CPU Usage', 'UMG CPU Usage', 'UGW CPU Usage', 'M3UA MSC Signaling Links']:
         ws._current_row = 0
         return
-        
-    week_ago = datetime.strftime(date.today() - timedelta(days=7), '%d.%m.%Y')
+    
+    if daily_report:
+        week_ago = datetime.strftime(date.today() - timedelta(days=7), '%d.%m.%Y')
+        sought_str = '{0} 21:00:00'.format(week_ago)
+    elif kpi_weekly_report:
+        month_ago = datetime.strftime(date.today() - timedelta(days=31), '%d.%m.%Y')
+        sought_str = '{0} 00:00:00'.format(month_ago)
     
     for cell in ws['A']:
-        if cell.value == '{0} 21:00:00'.format(week_ago):
+        if cell.value == sought_str:
             offset = cell.row - 1
             break
             
@@ -49,7 +54,7 @@ def _remove_old_data(wb, ws):
     ws._current_row = ws.max_row - offset
    
    
-def _open_workbook(file_id, output_file, daily_report=False):
+def _open_workbook(file_id, output_file, daily_report=False, kpi_weekly_report=False):
     sheet_name = _get_sheet_name(file_id)
     try:
         wb = load_workbook(output_file)
@@ -60,8 +65,8 @@ def _open_workbook(file_id, output_file, daily_report=False):
     except KeyError:
         ws = wb.create_sheet(sheet_name)
         
-    if daily_report:
-        _remove_old_data(wb, ws)
+    if (daily_report || kpi_weekly_report):
+        _remove_old_data(wb, ws, daily_report, kpi_weekly_report)
         
     return wb, ws
 
