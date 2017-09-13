@@ -25,4 +25,4 @@ _filenames = ['1.0 VLR_Subscribers.csv',
 
 if __name__ == '__main__':
 	for filename in _filenames:
-		collect_data(filename, 'KPI weekly report.xlsx', kpi_weekly_report=True)
+		collect_data(filename, 'KPI weekly report.xlsx', daily_report=False, kpi_weekly_report=True)

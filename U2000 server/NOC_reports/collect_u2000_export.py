@@ -9,7 +9,7 @@ def _get_files_by_path(path, file_id):
     return ['{0}{1}'.format(path, filename) for filename in os.listdir(path) if file_id in filename]
 
     
-def _compose_files_list(file_id, daily_report=False):
+def _compose_files_list(file_id, daily_report=False, kpi_weekly_report=False):
     yesterday = datetime.strftime(date.today() - timedelta(days=1), '%Y%m%d')
     path = '../../pmexport_{0}/'.format(yesterday)
     files = _get_files_by_path(path, file_id)
@@ -67,7 +67,7 @@ def _open_workbook(file_id, output_file, daily_report=False, kpi_weekly_report=F
     except KeyError:
         ws = wb.create_sheet(sheet_name)
         
-    if (daily_report || kpi_weekly_report):
+    if (daily_report or kpi_weekly_report):
         _remove_old_data(wb, ws, daily_report, kpi_weekly_report)
         
     return wb, ws
@@ -113,8 +113,8 @@ def _set_numeric_types(ws, row):
 
     
 def collect_data(file_id, output_file, **kwargs):   
-    files = _compose_files_list(file_id, kwargs)
-    wb, ws = _open_workbook(file_id, output_file, kwargs)
+    files = _compose_files_list(file_id, **kwargs)
+    wb, ws = _open_workbook(file_id, output_file, **kwargs)
     row = _append_to_workbook(ws, files, file_id)
     _set_numeric_types(ws, row)
     wb.save(output_file)
