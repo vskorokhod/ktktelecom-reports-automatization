@@ -1,2 +1,2 @@
 # ktktelecom-reports-automatization
-Набор скриптов для автоматизации составления отчетов группы мониторинга сети. Подробности - в руководстве
+A set of scripts to automate network monitoring group reporting. Details - in the manual
